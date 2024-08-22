@@ -1,5 +1,10 @@
 بسم الله الرحمن الرحيم
+
+
+
 In the name of Allah, the Most Gracious, the Most Merciful
+
+
 Sultan-lang
 Sultan Programming Language
 Arabic
@@ -59,7 +64,7 @@ lists of flags [--ar,--es,--fr]
 
 #small tests can be
 
-اطبع("مرحبا ارينا")
+اطبع("مرحبا سلطان")
 
 print("Hello Sultan") #English
 
