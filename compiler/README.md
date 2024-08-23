@@ -1,1 +1,1 @@
-# This the first ast lexer using ocaml
+# This the first ast lexer using ocaml it can be compiled with ocaml
