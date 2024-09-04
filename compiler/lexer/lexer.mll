@@ -1,8 +1,12 @@
+(* lexer.mll - Lexer for Sultan Language *)
 {
   exception Eof
   exception Error of string * Lexing.position
   open Parser
   let current_line = ref 1
+
+  (* Include the Almostashar Debugger Module *)
+  open Almostashar
 }
 
 rule token = parse
@@ -37,32 +41,38 @@ rule token = parse
     | "not"      -> NOT
     | "true"     -> TRUE
     | "false"    -> FALSE
+    | "public"   -> PUBLIC
+    | "struct"   -> STRUCT
     | _          -> ID lxm  (* Recognize anything else as an identifier *)
   }
-| '"'[^'"']*'"' as str  { STRING (String.sub str 1 (String.length str - 2)) }
-| '\''[^'\'']*'\'' as str  { STRING (String.sub str 1 (String.length str - 2)) }
-| '+'                 { PLUS }
-| '-'                 { MINUS }
-| '*'                 { TIMES }
-| '/'                 { DIV }
-| '%'                 { MOD }
-| "**"                { POW }
-| '='                 { EQ }
-| "=="                { EQUALS }
-| "!="                { NEQ }
-| '<'                 { LT }
-| '>'                 { GT }
-| "<="                { LEQ }
-| ">="                { GEQ }
-| '('                 { LPAREN }
-| ')'                 { RPAREN }
-| '['                 { LBRACKET }
-| ']'                 { RBRACKET }
-| '{'                 { LBRACE }
-| '}'                 { RBRACE }
-| ','                 { COMMA }
-| ':'                 { COLON }
-| '.'                 { DOT }
-| ';'                 { SEMICOLON }
-| _                   { raise (Error (Printf.sprintf "Unexpected character: '%s'" (Lexing.lexeme lexbuf), Lexing.lexeme_start_p lexbuf)) }
-| eof                 { raise Eof }
+| '@'                  { ANNOT }  (* Recognize Python-style decorators *)
+| '#' [^'\n']*         { token lexbuf }  (* Ignore comments starting with # *)
+| "->"                 { ARROW }  (* Recognize the '->' operator *)
+| '='                  { EQ }
+| '{'                  { LBRACE }
+| '}'                  { RBRACE }
+| ','                  { COMMA }
+| ':'                  { COLON }
+| '.'                  { DOT }
+| ';'                  { SEMICOLON }
+| '('                  { LPAREN }
+| ')'                  { RPAREN }
+| '['                  { LBRACKET }
+| ']'                  { RBRACKET }
+| "f\"" [^'\"']* "\"" as fstr { FSTRING (String.sub fstr 2 (String.length fstr - 3)) }  (* Recognize fstrings *)
+| '"'[^'"']*'"' as str { STRING (String.sub str 1 (String.length str - 2)) }
+| '\''[^'\'']*'\'' as str { STRING (String.sub str 1 (String.length str - 2)) }
+| '+'                  { PLUS }
+| '-'                  { MINUS }
+| '*'                  { TIMES }
+| '/'                  { DIV }
+| '%'                  { MOD }
+| "**"                 { POW }
+| "=="                 { EQUALS }
+| "!="                 { NEQ }
+| '<'                  { LT }
+| '>'                  { GT }
+| "<="                 { LEQ }
+| ">="                 { GEQ }
+| _                    { raise (Error (Printf.sprintf "Unexpected character: '%s'" (Lexing.lexeme lexbuf), Lexing.lexeme_start_p lexbuf)) }
+| eof                  { raise Eof }

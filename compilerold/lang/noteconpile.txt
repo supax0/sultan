@@ -1,0 +1,1 @@
+ocamlc  -I +str str.cma translator.ml
