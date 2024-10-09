@@ -7,10 +7,9 @@ In the name of Allah, the Most Gracious, the Most Merciful
 
 Sultan-lang
 Sultan Programming Language
-
-print("Hello Sultan"); #English
-
-
+def main(){
+  print("Hello Sultan"); #English
+}
 My goals
 
 Objective: To develop a new low-level language, Sultan-lang, with an initial compiler written in English. The long-term vision is to rewrite the compiler in Arabic once the language is fully self-hosting, while maintaining Sultan-lang's core mission: to compile scripts written in multiple languages. At launch, Sultan-lang will support Arabic (ar), Spanish (es), French (fr), and English (en), with English being the language of the initial compilation scripts.
