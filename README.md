@@ -7,8 +7,14 @@ In the name of Allah, the Most Gracious, the Most Merciful
 
 Sultan-lang
 Sultan Programming Language
+
+
+
 def main(){
+
   print("Hello Sultan"); #English
+
+  
 }
 My goals
 
