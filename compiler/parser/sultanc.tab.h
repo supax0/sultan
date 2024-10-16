@@ -42,103 +42,101 @@
      IDENTIFIER = 258,
      STRING_LITERAL = 259,
      NUMBER = 260,
-     CHAR_LITERAL = 261,
-     FSTRING_LITERAL = 262,
-     LEFT_QUOTE = 263,
-     RIGHT_QUOTE = 264,
-     DEF = 265,
-     PRINT = 266,
-     INT = 267,
-     FLOAT = 268,
-     LET = 269,
-     LIBRARY = 270,
-     OUTPUT = 271,
-     AR_CHAR = 272,
-     IMPORT = 273,
-     INPUT = 274,
-     IF = 275,
-     ELSE = 276,
-     RETURN = 277,
-     AS = 278,
-     FROM = 279,
-     ARROW = 280,
-     THEN = 281,
-     DOT = 282,
-     SEMICOLON = 283,
-     EQUALS = 284,
-     LPAREN = 285,
-     RPAREN = 286,
-     CLPAREN = 287,
-     CRPAREN = 288,
-     COMMA = 289,
-     PLUS = 290,
-     MINUS = 291,
-     MULT = 292,
-     DIV = 293,
-     LT = 294,
-     GT = 295,
+     FSTRING_LITERAL = 261,
+     DEF = 262,
+     PRINT = 263,
+     LET = 264,
+     MAIN = 265,
+     IF = 266,
+     ELSE = 267,
+     SEMICOLON = 268,
+     EQUALS = 269,
+     LPAREN = 270,
+     RPAREN = 271,
+     CLPAREN = 272,
+     CRPAREN = 273,
+     COMMA = 274,
+     PLUS = 275,
+     MINUS = 276,
+     MULT = 277,
+     DIV = 278,
+     LT = 279,
+     GT = 280,
+     DOT = 281,
+     INT = 282,
+     FLOAT = 283,
+     LIBRARY = 284,
+     OUTPUT = 285,
+     AR_CHAR = 286,
+     IMPORT = 287,
+     INPUT = 288,
+     FROM = 289,
+     RETURN = 290,
+     AS = 291,
+     ARROW = 292,
+     THEN = 293,
+     EQ = 294,
+     NE = 295,
      LE = 296,
      GE = 297,
-     EQ = 298,
-     NE = 299
+     CHAR_LITERAL = 298
    };
 #endif
 /* Tokens.  */
 #define IDENTIFIER 258
 #define STRING_LITERAL 259
 #define NUMBER 260
-#define CHAR_LITERAL 261
-#define FSTRING_LITERAL 262
-#define LEFT_QUOTE 263
-#define RIGHT_QUOTE 264
-#define DEF 265
-#define PRINT 266
-#define INT 267
-#define FLOAT 268
-#define LET 269
-#define LIBRARY 270
-#define OUTPUT 271
-#define AR_CHAR 272
-#define IMPORT 273
-#define INPUT 274
-#define IF 275
-#define ELSE 276
-#define RETURN 277
-#define AS 278
-#define FROM 279
-#define ARROW 280
-#define THEN 281
-#define DOT 282
-#define SEMICOLON 283
-#define EQUALS 284
-#define LPAREN 285
-#define RPAREN 286
-#define CLPAREN 287
-#define CRPAREN 288
-#define COMMA 289
-#define PLUS 290
-#define MINUS 291
-#define MULT 292
-#define DIV 293
-#define LT 294
-#define GT 295
+#define FSTRING_LITERAL 261
+#define DEF 262
+#define PRINT 263
+#define LET 264
+#define MAIN 265
+#define IF 266
+#define ELSE 267
+#define SEMICOLON 268
+#define EQUALS 269
+#define LPAREN 270
+#define RPAREN 271
+#define CLPAREN 272
+#define CRPAREN 273
+#define COMMA 274
+#define PLUS 275
+#define MINUS 276
+#define MULT 277
+#define DIV 278
+#define LT 279
+#define GT 280
+#define DOT 281
+#define INT 282
+#define FLOAT 283
+#define LIBRARY 284
+#define OUTPUT 285
+#define AR_CHAR 286
+#define IMPORT 287
+#define INPUT 288
+#define FROM 289
+#define RETURN 290
+#define AS 291
+#define ARROW 292
+#define THEN 293
+#define EQ 294
+#define NE 295
 #define LE 296
 #define GE 297
-#define EQ 298
-#define NE 299
+#define CHAR_LITERAL 298
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 27 "sultanc.y"
+#line 25 "sultanc.y"
 {
     char *str;  // For identifiers and model names
     int num;    // For numbers
 }
 /* Line 1529 of yacc.c.  */
-#line 142 "sultanc.tab.h"
+#line 140 "sultanc.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
