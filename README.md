@@ -54,9 +54,9 @@ sultanc stop
   يعني هذا مثل 
 
 
-  sultan alive
-  touch test.sn
-  open test.sn
+  #sultan alive
+  #open test.sn
+  #sultanc -c <filename>
 
 
 ;------------------------------------------------------------------------------------------------------------------------------------------------  
