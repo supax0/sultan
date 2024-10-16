@@ -5,6 +5,72 @@
 In the name of Allah, the Most Gracious, the Most Merciful
 
 
+
+هذا هي النسخه التجربيه لمحرر النص سلطان. لغه السلطان تعتبر اول لغه بالعالم التي تدعم العربيه والانجليزيه من ضمن تحرير النص. وتعتبر اول (Arabic compiler) للغه العربيه التي تدعم تحويل النص الي لغه c-lang ويتم اخراج c كود. ممكن نستخدم للغه بهذي الطريقة.
+اول خطوه وهي 
+
+git clone https://github.com/supax0/sultan-lang
+
+بعدها
+cd sultan-lang
+chmod +x sultan.sh
+./sultan.sh
+بعد تحميل وتشغيل ملف sultan.sh 
+لان اغلب محررات الكود ماتدعم العربيه لغه السلطان موجود بالقلعه سيرفر بسيط لكتابه الكواد ،سيتم تطويره باذن الله.
+
+بعد الخطوه الاوله الان سوي
+sultanc alive
+
+الان تقدر تروح علي 127.0.0.1:5140
+محرر خاص باللغه
+لتسكير السيرفر 
+sultanc stop
+ لعاده التشغيل
+ sultanc realive
+
+ في السيرفر تقدر تسخدم الترمنل طبيعي فقط لفتح ملف 
+ open <filename>
+  للحفظ
+  command+s 
+ الملف بينحفظ وقتها بعد كتابه النص تقدر تسوي
+ sultanc -c <filename>
+
+ للاسف الترمنل حاليا بالانجيلزي الي ان يتم التطوير الفكره حاليا انه توفير مكان لكاتبه النص العربيه مع ترمنل يدعم العربيه
+ تقدر تكتب الكود في اي مكان ماانت مجبر تستخدم 
+ sultan alive
+ فقط وقت تنفذ الامر سوي 
+ sultanc -c <filename>
+ يعني لو الملف اسمه 
+ exmaple.sn
+ sultanc -c example.sn
+  ملف السلطان 
+  .sn
+  مثال عن لغه السلطان
+
+عرف القلعة () {
+  اطبع("مرحبا من قلعة السلطان");
+  }
+
+  يعني هذا مثل 
+  sultan alive
+  touch test.sn
+  open test.sn
+   <img width="216" alt="openexmaple" src="https://github.com/user-attachments/assets/796c60bb-8e92-4d83-88e6-26d1c7d1152e">
+  
+
+  <img width="750" alt="codeexample" src="https://github.com/user-attachments/assets/15717d86-ac7d-4e01-b912-0b78aeb3f898">
+
+
+ 
+<img width="209" alt="runexmaple" src="https://github.com/user-attachments/assets/358a1eaf-4c48-4f2a-bb31-e0176231dd12">
+
+<img width="743" alt="outputexmaple" src="https://github.com/user-attachments/assets/f66d803f-8182-4aef-86aa-c454fd98e592">
+
+<img width="166" alt="Screenshot 2024-10-16 at 12 07 09 AM" src="https://github.com/user-attachments/assets/d13fdb21-0486-46c4-80a0-6f62adda300a">
+
+
+
+
 Sultan-lang
 Sultan Programming Language
 
@@ -12,7 +78,7 @@ Sultan Programming Language
 
 def main(){
 
-  print("Hello Sultan"); #English
+    print("Hello Sultan"); #English
 
   
 }
