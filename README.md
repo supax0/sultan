@@ -56,15 +56,33 @@ sultanc stop
   touch test.sn
   open test.sn
    <img width="216" alt="openexmaple" src="https://github.com/user-attachments/assets/796c60bb-8e92-4d83-88e6-26d1c7d1152e">
+
+
+   
   
 
   <img width="750" alt="codeexample" src="https://github.com/user-attachments/assets/15717d86-ac7d-4e01-b912-0b78aeb3f898">
 
 
+  
+
+
  
 <img width="209" alt="runexmaple" src="https://github.com/user-attachments/assets/358a1eaf-4c48-4f2a-bb31-e0176231dd12">
 
+
+
+
+
+
+
 <img width="743" alt="outputexmaple" src="https://github.com/user-attachments/assets/f66d803f-8182-4aef-86aa-c454fd98e592">
+
+
+
+
+
+
 
 <img width="166" alt="Screenshot 2024-10-16 at 12 07 09 AM" src="https://github.com/user-attachments/assets/d13fdb21-0486-46c4-80a0-6f62adda300a">
 
