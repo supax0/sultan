@@ -12,9 +12,9 @@ In the name of Allah, the Most Gracious, the Most Merciful
 git clone https://github.com/supax0/sultan-lang
 
 بعدها
-cd sultan-lang
-chmod +x sultan.sh
-./sultan.sh
+# cd sultan-lang
+
+# ./sultan.sh
 بعد تحميل وتشغيل ملف sultan.sh 
 لان اغلب محررات الكود ماتدعم العربيه لغه السلطان موجود بالقلعه سيرفر بسيط لكتابه الكواد ،سيتم تطويره باذن الله.
 
