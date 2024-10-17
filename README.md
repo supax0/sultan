@@ -37,8 +37,9 @@ then you need to cd into the folder
 
 
 #note if english skip this step
-   If you are code in English you do not need to start alive or to stuo or even to give command realive. Those commands are built to make Arabic coding easier, for english just use any code editor of your chosen. the
-   the file exstension of the sultanc is .sn and compile with sultanc -c <filename.sn>
+
+ If you are code in English you do not need to start alive or to stuo or even to give command realive. Those commands are built to make Arabic coding easier, for english just use any code editor of your chosen. the
+ the file exstension of the sultanc is .sn and compile with sultanc -c <filename.sn>
 
    
 ```bash
