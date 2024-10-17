@@ -1,16 +1,12 @@
-بسم الله الرحمن الرحيم
 
-
-
-In the name of Allah, the Most Gracious, the Most Merciful
 
 
 
 هذا هي النسخه التجربيه لمحرر النص سلطان. لغه السلطان تعتبر اول لغه بالعالم التي تدعم العربيه والانجليزيه من ضمن تحرير النص. وتعتبر اول (Arabic compiler) للغه العربيه التي تدعم تحويل النص الي لغه c-lang ويتم اخراج c كود. ممكن نستخدم للغه بهذي الطريقة.
 اول خطوه وهي 
-
+'''
 git clone https://github.com/supax0/sultan-lang
-
+'''
 بعدها
 # cd sultan-lang
 
