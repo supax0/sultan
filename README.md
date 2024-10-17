@@ -10,10 +10,13 @@
 اتبع الخطوات التالية لتثبيت وتشغيل محرر النص سلطان:
 
 1. **استنساخ المستودع من GitHub:**
+   **clone sultanc**
    ```bash
    git clone https://github.com/supax0/sultan-lang
 
+
 الدخول إلى مجلد المشروع:
+then you need to cd into the folder 
 ```bash
    cd sultan-lang
 ```
@@ -22,12 +25,15 @@
 بعد الخطوه الاوله الان سوي
 
 2. **تشغيل محرر السلطان:**
+   Then run this command
    ```bash
    ./sultan.sh
    ```
-3. **لتبدا الكتابه بالعربي**
+4. **لتبدا الكتابه بالعربي**
    بسبب عدم وجود محرر كود عربي عملت محرر بسيط يتيح لك ان تكتب بالعربي لنسخه المبدائه
-   لتبد المحرر 
+   لتبد المحرر
+   If you are code in English you do not need to start alive or to stuo or even to give command realive. Those commands are built to make Arabic coding easier, for english just use any code editor of your chosen. the
+   the file exstension of the sultanc is .sn and compile with sultanc -c <filename.sn>
 ```bash
    sultanc alive
 ```
@@ -45,26 +51,40 @@
 
 الان تقدر تروح علي 127.0.0.1:5140
 محرر خاص باللغه
-لتسكير السيرفر 
-sultanc stop
- لعاده التشغيل
- sultanc realive
+
+
 
  في السيرفر تقدر تسخدم الترمنل طبيعي فقط لفتح ملف 
+ ```bash
  open <filename>
+```
+
   للحفظ
-  command+s 
+  ```bash
+  command+s
+``` 
  الملف بينحفظ وقتها بعد كتابه النص تقدر تسوي
+ ```bash
  sultanc -c <filename>
+```
 
  للاسف الترمنل حاليا بالانجيلزي الي ان يتم التطوير الفكره حاليا انه توفير مكان لكاتبه النص العربيه مع ترمنل يدعم العربيه
  تقدر تكتب الكود في اي مكان ماانت مجبر تستخدم 
+ ```bash
  sultan alive
+```
  فقط وقت تنفذ الامر سوي 
- sultanc -c <filename>
+
+ This can be used for english and Arabic compile files all same step, the only difference is the step of written the code.
+ ```bash
+ sultanc -c <filename.sn>
+```
  يعني لو الملف اسمه 
- exmaple.sn
+ # exmalpe
+  my file name is -> exmaple.sn
+ ```bash 
  sultanc -c example.sn
+```
   ملف السلطان 
   .sn
   مثال عن لغه السلطان
@@ -74,11 +94,6 @@ sultanc stop
   }
 
   يعني هذا مثل 
-
-
-  # sultan alive
-  # open test.sn
-  # sultanc -c test.sn
 
 
   
@@ -97,13 +112,14 @@ Sultan-lang
 Sultan Programming Language
 
 
-
+```bash
 def main(){
 
     print("Hello Sultan"); #English
 
   
 }
+```
 My goals
 
 Objective: To develop a new low-level language, Sultan-lang, with an initial compiler written in English. The long-term vision is to rewrite the compiler in Arabic once the language is fully self-hosting, while maintaining Sultan-lang's core mission: to compile scripts written in multiple languages. At launch, Sultan-lang will support Arabic (ar), Spanish (es), French (fr), and English (en), with English being the language of the initial compilation scripts.
