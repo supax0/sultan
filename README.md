@@ -120,6 +120,19 @@ def main(){
   
 }
 ```
+
+
+
+
+الملفات كلها بالعربي والانجليزي نفس الشي 
+Both English and Arabic will generate a c file as IR file and also exc file in the 
+```bash
+# thise folder will be generated as steo if compilations 
+target/ir
+#The exc file will be in
+target/<filename>
+```
+
 My goals
 
 Objective: To develop a new low-level language, Sultan-lang, with an initial compiler written in English. The long-term vision is to rewrite the compiler in Arabic once the language is fully self-hosting, while maintaining Sultan-lang's core mission: to compile scripts written in multiple languages. At launch, Sultan-lang will support Arabic (ar), Spanish (es), French (fr), and English (en), with English being the language of the initial compilation scripts.
