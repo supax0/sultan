@@ -69,88 +69,92 @@
      IDENTIFIER = 258,
      STRING_LITERAL = 259,
      NUMBER = 260,
-     FSTRING_LITERAL = 261,
-     DEF = 262,
-     PRINT = 263,
-     LET = 264,
-     MAIN = 265,
-     IF = 266,
-     ELSE = 267,
-     SEMICOLON = 268,
-     EQUALS = 269,
-     LPAREN = 270,
-     RPAREN = 271,
-     CLPAREN = 272,
-     CRPAREN = 273,
-     COMMA = 274,
-     PLUS = 275,
-     MINUS = 276,
-     MULT = 277,
-     DIV = 278,
-     LT = 279,
-     GT = 280,
-     DOT = 281,
-     INT = 282,
-     FLOAT = 283,
-     LIBRARY = 284,
-     OUTPUT = 285,
-     AR_CHAR = 286,
-     IMPORT = 287,
-     INPUT = 288,
-     FROM = 289,
-     RETURN = 290,
-     AS = 291,
-     ARROW = 292,
-     THEN = 293,
-     EQ = 294,
-     NE = 295,
-     LE = 296,
-     GE = 297,
-     CHAR_LITERAL = 298
+     CHAR_LITERAL = 261,
+     FSTRING_LITERAL = 262,
+     LEFT_QUOTE = 263,
+     RIGHT_QUOTE = 264,
+     DEF = 265,
+     PRINT = 266,
+     INT = 267,
+     FLOAT = 268,
+     LET = 269,
+     LIBRARY = 270,
+     OUTPUT = 271,
+     AR_CHAR = 272,
+     IMPORT = 273,
+     INPUT = 274,
+     IF = 275,
+     ELSE = 276,
+     RETURN = 277,
+     AS = 278,
+     FROM = 279,
+     ARROW = 280,
+     THEN = 281,
+     MAIN = 282,
+     DOT = 283,
+     SEMICOLON = 284,
+     EQUALS = 285,
+     LPAREN = 286,
+     RPAREN = 287,
+     CLPAREN = 288,
+     CRPAREN = 289,
+     COMMA = 290,
+     PLUS = 291,
+     MINUS = 292,
+     MULT = 293,
+     DIV = 294,
+     LT = 295,
+     GT = 296,
+     LE = 297,
+     GE = 298,
+     EQ = 299,
+     NE = 300
    };
 #endif
 /* Tokens.  */
 #define IDENTIFIER 258
 #define STRING_LITERAL 259
 #define NUMBER 260
-#define FSTRING_LITERAL 261
-#define DEF 262
-#define PRINT 263
-#define LET 264
-#define MAIN 265
-#define IF 266
-#define ELSE 267
-#define SEMICOLON 268
-#define EQUALS 269
-#define LPAREN 270
-#define RPAREN 271
-#define CLPAREN 272
-#define CRPAREN 273
-#define COMMA 274
-#define PLUS 275
-#define MINUS 276
-#define MULT 277
-#define DIV 278
-#define LT 279
-#define GT 280
-#define DOT 281
-#define INT 282
-#define FLOAT 283
-#define LIBRARY 284
-#define OUTPUT 285
-#define AR_CHAR 286
-#define IMPORT 287
-#define INPUT 288
-#define FROM 289
-#define RETURN 290
-#define AS 291
-#define ARROW 292
-#define THEN 293
-#define EQ 294
-#define NE 295
-#define LE 296
-#define GE 297
-#define CHAR_LITERAL 298
+#define CHAR_LITERAL 261
+#define FSTRING_LITERAL 262
+#define LEFT_QUOTE 263
+#define RIGHT_QUOTE 264
+#define DEF 265
+#define PRINT 266
+#define INT 267
+#define FLOAT 268
+#define LET 269
+#define LIBRARY 270
+#define OUTPUT 271
+#define AR_CHAR 272
+#define IMPORT 273
+#define INPUT 274
+#define IF 275
+#define ELSE 276
+#define RETURN 277
+#define AS 278
+#define FROM 279
+#define ARROW 280
+#define THEN 281
+#define MAIN 282
+#define DOT 283
+#define SEMICOLON 284
+#define EQUALS 285
+#define LPAREN 286
+#define RPAREN 287
+#define CLPAREN 288
+#define CRPAREN 289
+#define COMMA 290
+#define PLUS 291
+#define MINUS 292
+#define MULT 293
+#define DIV 294
+#define LT 295
+#define GT 296
+#define LE 297
+#define GE 298
+#define EQ 299
+#define NE 300
 
 
 
@@ -173,9 +177,10 @@ void yyerror(const char *s);
 
 // Global variables
 int main_defined = 0;      // Track if the main function is defined
+char *function_calls = NULL;  // Store function calls in the main function
+
 int yycolumn = 0;  // Column tracking
 extern int compile_mode;  // Declare compile_mode as extern
-
 
 
 /* Enabling traces.  */
@@ -198,13 +203,13 @@ extern int compile_mode;  // Declare compile_mode as extern
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 25 "sultanc.y"
+#line 26 "sultanc.y"
 {
     char *str;  // For identifiers and model names
     int num;    // For numbers
 }
 /* Line 193 of yacc.c.  */
-#line 208 "sultanc.tab.c"
+#line 213 "sultanc.tab.c"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -217,7 +222,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 221 "sultanc.tab.c"
+#line 226 "sultanc.tab.c"
 
 #ifdef short
 # undef short
@@ -430,22 +435,22 @@ union yyalloc
 #endif
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  6
+#define YYFINAL  26
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   85
+#define YYLAST   168
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  44
+#define YYNTOKENS  46
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  10
+#define YYNNTS  13
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  25
+#define YYNRULES  36
 /* YYNRULES -- Number of states.  */
-#define YYNSTATES  65
+#define YYNSTATES  85
 
 /* YYTRANSLATE(YYLEX) -- Bison symbol number corresponding to YYLEX.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   298
+#define YYMAXUTOK   300
 
 #define YYTRANSLATE(YYX)						\
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -482,7 +487,8 @@ static const yytype_uint8 yytranslate[] =
        5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
-      35,    36,    37,    38,    39,    40,    41,    42,    43
+      35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
+      45
 };
 
 #if YYDEBUG
@@ -490,33 +496,38 @@ static const yytype_uint8 yytranslate[] =
    YYRHS.  */
 static const yytype_uint8 yyprhs[] =
 {
-       0,     0,     3,     6,     8,    16,    24,    26,    29,    31,
-      37,    43,    45,    47,    49,    55,    61,    69,    74,    76,
-      78,    82,    86,    90,    94,    98
+       0,     0,     3,     5,     8,    10,    12,    14,    16,    18,
+      20,    22,    24,    26,    31,    37,    45,    53,    57,    63,
+      68,    76,    81,    87,    93,    95,    97,    99,   103,   107,
+     111,   115,   119,   123,   127,   131,   135
 };
 
 /* YYRHS -- A `-1'-separated list of the rules' RHS.  */
 static const yytype_int8 yyrhs[] =
 {
-      45,     0,    -1,    45,    46,    -1,    46,    -1,     7,     3,
-      15,    16,    17,    47,    18,    -1,     7,    10,    15,    16,
-      17,    47,    18,    -1,    48,    -1,    48,    49,    -1,    49,
-      -1,     9,     3,    14,    53,    13,    -1,     8,    15,    53,
-      16,    13,    -1,    51,    -1,    52,    -1,    50,    -1,     8,
-      15,     4,    16,    13,    -1,     8,    15,     6,    16,    13,
-      -1,    11,    15,    53,    16,    17,    48,    18,    -1,    12,
-      17,    48,    18,    -1,     5,    -1,     3,    -1,    53,    20,
-      53,    -1,    53,    21,    53,    -1,    53,    22,    53,    -1,
-      53,    23,    53,    -1,    53,    24,    53,    -1,    53,    25,
-      53,    -1
+      47,     0,    -1,    48,    -1,    48,    49,    -1,    49,    -1,
+      51,    -1,    53,    -1,    52,    -1,    57,    -1,    54,    -1,
+      50,    -1,    55,    -1,    56,    -1,     3,    31,    32,    29,
+      -1,     3,    31,    58,    32,    29,    -1,    10,    27,    31,
+      32,    33,    48,    34,    -1,    10,     3,    31,    32,    33,
+      48,    34,    -1,    14,     3,    29,    -1,    14,     3,    30,
+      58,    29,    -1,     3,    30,    58,    29,    -1,    20,    31,
+      58,    32,    33,    48,    34,    -1,    21,    33,    48,    34,
+      -1,    11,    31,     4,    32,    29,    -1,    11,    31,     7,
+      32,    29,    -1,     3,    -1,     5,    -1,     4,    -1,    58,
+      36,    58,    -1,    58,    37,    58,    -1,    58,    38,    58,
+      -1,    58,    39,    58,    -1,    58,    44,    58,    -1,    58,
+      45,    58,    -1,    58,    40,    58,    -1,    58,    41,    58,
+      -1,    58,    42,    58,    -1,    58,    43,    58,    -1
 };
 
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
-static const yytype_uint8 yyrline[] =
+static const yytype_uint16 yyrline[] =
 {
-       0,    98,    98,    99,   104,   116,   132,   140,   143,   150,
-     154,   158,   159,   160,   164,   169,   211,   219,   225,   228,
-     231,   234,   237,   240,   243,   246
+       0,   102,   102,   133,   141,   150,   151,   152,   153,   154,
+     155,   156,   157,   166,   181,   201,   229,   237,   248,   277,
+     298,   310,   320,   325,   365,   374,   379,   383,   390,   397,
+     404,   411,   418,   425,   432,   439,   446
 };
 #endif
 
@@ -526,14 +537,15 @@ static const yytype_uint8 yyrline[] =
 static const char *const yytname[] =
 {
   "$end", "error", "$undefined", "IDENTIFIER", "STRING_LITERAL", "NUMBER",
-  "FSTRING_LITERAL", "DEF", "PRINT", "LET", "MAIN", "IF", "ELSE",
-  "SEMICOLON", "EQUALS", "LPAREN", "RPAREN", "CLPAREN", "CRPAREN", "COMMA",
-  "PLUS", "MINUS", "MULT", "DIV", "LT", "GT", "DOT", "INT", "FLOAT",
-  "LIBRARY", "OUTPUT", "AR_CHAR", "IMPORT", "INPUT", "FROM", "RETURN",
-  "AS", "ARROW", "THEN", "EQ", "NE", "LE", "GE", "CHAR_LITERAL", "$accept",
-  "sultanc", "function_calls", "function_body", "statement_list",
-  "statement", "print_statement", "if_statement", "else_statement",
-  "expression", 0
+  "CHAR_LITERAL", "FSTRING_LITERAL", "LEFT_QUOTE", "RIGHT_QUOTE", "DEF",
+  "PRINT", "INT", "FLOAT", "LET", "LIBRARY", "OUTPUT", "AR_CHAR", "IMPORT",
+  "INPUT", "IF", "ELSE", "RETURN", "AS", "FROM", "ARROW", "THEN", "MAIN",
+  "DOT", "SEMICOLON", "EQUALS", "LPAREN", "RPAREN", "CLPAREN", "CRPAREN",
+  "COMMA", "PLUS", "MINUS", "MULT", "DIV", "LT", "GT", "LE", "GE", "EQ",
+  "NE", "$accept", "program", "statements", "statement", "function_call",
+  "main_statement", "def_statement", "let_declaration",
+  "assignment_statement", "if_statement", "else_statement",
+  "print_statement", "expression", 0
 };
 #endif
 
@@ -546,24 +558,26 @@ static const yytype_uint16 yytoknum[] =
      265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
      285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
-     295,   296,   297,   298
+     295,   296,   297,   298,   299,   300
 };
 # endif
 
 /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    44,    45,    45,    46,    46,    47,    48,    48,    49,
-      49,    49,    49,    49,    50,    50,    51,    52,    53,    53,
-      53,    53,    53,    53,    53,    53
+       0,    46,    47,    48,    48,    49,    49,    49,    49,    49,
+      49,    49,    49,    50,    50,    51,    52,    53,    53,    54,
+      55,    56,    57,    57,    58,    58,    58,    58,    58,    58,
+      58,    58,    58,    58,    58,    58,    58
 };
 
 /* YYR2[YYN] -- Number of symbols composing right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     2,     1,     7,     7,     1,     2,     1,     5,
-       5,     1,     1,     1,     5,     5,     7,     4,     1,     1,
-       3,     3,     3,     3,     3,     3
+       0,     2,     1,     2,     1,     1,     1,     1,     1,     1,
+       1,     1,     1,     4,     5,     7,     7,     3,     5,     4,
+       7,     4,     5,     5,     1,     1,     1,     3,     3,     3,
+       3,     3,     3,     3,     3,     3,     3
 };
 
 /* YYDEFACT[STATE-NAME] -- Default rule to reduce with in state
@@ -571,39 +585,45 @@ static const yytype_uint8 yyr2[] =
    means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     0,     0,     3,     0,     0,     1,     2,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     6,
-       8,    13,    11,    12,     0,     0,     0,     0,     0,     4,
-       7,     5,    19,     0,    18,     0,     0,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       0,    17,    14,    15,    10,    20,    21,    22,    23,    24,
-      25,     9,     0,     0,    16
+       0,     0,     0,     0,     0,     0,     0,     0,     2,     4,
+      10,     5,     7,     6,     9,    11,    12,     8,     0,     0,
+       0,     0,     0,     0,     0,     0,     1,     3,    24,    26,
+      25,     0,     0,     0,     0,     0,     0,     0,    17,     0,
+       0,     0,    19,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,    13,     0,     0,     0,     0,     0,     0,
+       0,    21,    27,    28,    29,    30,    33,    34,    35,    36,
+      31,    32,    14,     0,     0,    22,    23,    18,     0,     0,
+       0,     0,    16,    15,    20
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2,     3,    18,    19,    20,    21,    22,    23,    36
+      -1,     7,     8,     9,    10,    11,    12,    13,    14,    15,
+      16,    17,    31
 };
 
 /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
    STATE-NUM.  */
-#define YYPACT_NINF -28
+#define YYPACT_NINF -38
 static const yytype_int8 yypact[] =
 {
-       1,    26,    33,   -28,    17,    28,   -28,   -28,    18,    41,
-      52,    54,    -5,    -5,    55,    69,    58,    57,    59,    -5,
-     -28,   -28,   -28,   -28,    60,    13,    61,    53,    -5,   -28,
-     -28,   -28,   -28,    63,   -28,    64,    29,    53,    39,    19,
-      68,    70,    71,    53,    53,    53,    53,    53,    53,   -11,
-      65,   -28,   -28,   -28,   -28,    43,    43,    22,    22,   -28,
-     -28,   -28,    -5,    30,   -28
+      83,    -7,    -1,   -20,    10,   -15,   -13,    53,    83,   -38,
+     -38,   -38,   -38,   -38,   -38,   -38,   -38,   -38,    24,    14,
+      27,    29,     5,    18,    24,    83,   -38,   -38,   -38,   -38,
+     -38,    70,    34,   101,    32,    33,    36,    37,   -38,    24,
+     115,    11,   -38,    24,    24,    24,    24,    24,    24,    24,
+      24,    24,    24,   -38,    49,    46,    47,    54,    55,    87,
+      62,   -38,   123,   123,   -37,   -37,    12,    12,    12,    12,
+     -38,   -38,   -38,    83,    83,   -38,   -38,   -38,    83,    41,
+      56,    71,   -38,   -38,   -38
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -28,   -28,    74,    72,   -27,   -19,   -28,   -28,   -28,   -22
+     -38,   -38,   -24,    -8,   -38,   -38,   -38,   -38,   -38,   -38,
+     -38,   -38,    -9
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]].  What to do in state STATE-NUM.  If
@@ -613,41 +633,59 @@ static const yytype_int8 yypgoto[] =
 #define YYTABLE_NINF -1
 static const yytype_uint8 yytable[] =
 {
-      30,    39,    61,    14,    15,    38,    16,    17,     1,    43,
-      44,    45,    46,    47,    48,    49,    32,    33,    34,    35,
-      30,    55,    56,    57,    58,    59,    60,    14,    15,     4,
-      16,    17,     8,     6,    10,    63,     5,    51,    14,    15,
-       1,    16,    17,     9,    30,    42,    47,    48,    64,    43,
-      44,    45,    46,    47,    48,    50,    32,    11,    34,    43,
-      44,    45,    46,    47,    48,    45,    46,    47,    48,    12,
-      25,    13,    26,    27,    28,    37,     7,    29,    31,    40,
-      41,    52,    62,    53,    54,    24
+      27,    41,    20,    47,    48,    49,    50,    51,    52,    36,
+      33,    22,    37,    23,     1,    40,    24,    28,    29,    30,
+      25,     2,     3,    18,    19,     4,    21,    28,    29,    30,
+      59,     5,     6,    27,    62,    63,    64,    65,    66,    67,
+      68,    69,    70,    71,     1,    61,    32,    38,    39,    79,
+      80,     2,     3,    26,    81,     4,    51,    52,    34,     1,
+      35,     5,     6,    53,    55,    56,     2,     3,    57,    58,
+       4,    27,    27,    27,     1,    82,     5,     6,    72,    73,
+      74,     2,     3,    75,    76,     4,     1,     0,     0,     0,
+      83,     5,     6,     2,     3,    78,     0,     4,     0,    42,
+       0,     0,     0,     5,     6,    84,    43,    44,    45,    46,
+      47,    48,    49,    50,    51,    52,    77,     0,     0,     0,
+       0,     0,     0,    43,    44,    45,    46,    47,    48,    49,
+      50,    51,    52,    54,     0,     0,     0,    43,    44,    45,
+      46,    47,    48,    49,    50,    51,    52,    60,     0,     0,
+       0,    43,    44,    45,    46,    47,    48,    49,    50,    51,
+      52,    45,    46,    47,    48,    49,    50,    51,    52
 };
 
-static const yytype_uint8 yycheck[] =
+static const yytype_int8 yycheck[] =
 {
-      19,    28,    13,     8,     9,    27,    11,    12,     7,    20,
-      21,    22,    23,    24,    25,    37,     3,     4,     5,     6,
-      39,    43,    44,    45,    46,    47,    48,     8,     9,     3,
-      11,    12,    15,     0,    16,    62,    10,    18,     8,     9,
-       7,    11,    12,    15,    63,    16,    24,    25,    18,    20,
-      21,    22,    23,    24,    25,    16,     3,    16,     5,    20,
-      21,    22,    23,    24,    25,    22,    23,    24,    25,    17,
-      15,    17,     3,    15,    17,    14,     2,    18,    18,    16,
-      16,    13,    17,    13,    13,    13
+       8,    25,     3,    40,    41,    42,    43,    44,    45,     4,
+      19,    31,     7,     3,     3,    24,    31,     3,     4,     5,
+      33,    10,    11,    30,    31,    14,    27,     3,     4,     5,
+      39,    20,    21,    41,    43,    44,    45,    46,    47,    48,
+      49,    50,    51,    52,     3,    34,    32,    29,    30,    73,
+      74,    10,    11,     0,    78,    14,    44,    45,    31,     3,
+      31,    20,    21,    29,    32,    32,    10,    11,    32,    32,
+      14,    79,    80,    81,     3,    34,    20,    21,    29,    33,
+      33,    10,    11,    29,    29,    14,     3,    -1,    -1,    -1,
+      34,    20,    21,    10,    11,    33,    -1,    14,    -1,    29,
+      -1,    -1,    -1,    20,    21,    34,    36,    37,    38,    39,
+      40,    41,    42,    43,    44,    45,    29,    -1,    -1,    -1,
+      -1,    -1,    -1,    36,    37,    38,    39,    40,    41,    42,
+      43,    44,    45,    32,    -1,    -1,    -1,    36,    37,    38,
+      39,    40,    41,    42,    43,    44,    45,    32,    -1,    -1,
+      -1,    36,    37,    38,    39,    40,    41,    42,    43,    44,
+      45,    38,    39,    40,    41,    42,    43,    44,    45
 };
 
 /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
    symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     7,    45,    46,     3,    10,     0,    46,    15,    15,
-      16,    16,    17,    17,     8,     9,    11,    12,    47,    48,
-      49,    50,    51,    52,    47,    15,     3,    15,    17,    18,
-      49,    18,     3,     4,     5,     6,    53,    14,    53,    48,
-      16,    16,    16,    20,    21,    22,    23,    24,    25,    53,
-      16,    18,    13,    13,    13,    53,    53,    53,    53,    53,
-      53,    13,    17,    48,    18
+       0,     3,    10,    11,    14,    20,    21,    47,    48,    49,
+      50,    51,    52,    53,    54,    55,    56,    57,    30,    31,
+       3,    27,    31,     3,    31,    33,     0,    49,     3,     4,
+       5,    58,    32,    58,    31,    31,     4,     7,    29,    30,
+      58,    48,    29,    36,    37,    38,    39,    40,    41,    42,
+      43,    44,    45,    29,    32,    32,    32,    32,    32,    58,
+      32,    34,    58,    58,    58,    58,    58,    58,    58,    58,
+      58,    58,    29,    33,    33,    29,    29,    29,    33,    48,
+      48,    48,    34,    34,    34
 };
 
 #define yyerrok		(yyerrstatus = 0)
@@ -1461,92 +1499,237 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 4:
-#line 104 "sultanc.y"
+        case 2:
+#line 103 "sultanc.y"
     {
-        // Ensure necessary C libraries are included in the generated IR
-        fprintf(irFile, "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n");
+        if (!main_defined) {
+            yyerror("Error: 'main' function must be declared.");
+            YYABORT;  // Abort parsing if 'main' is missing
+        }
 
-        // Generate the function definition in C
-        fprintf(irFile, "void %s() {\n%s\n}\n", (yyvsp[(2) - (7)].str), (yyvsp[(6) - (7)].str));
+        // Generate the necessary includes
+        fprintf(irFile, "#include <stdio.h>\n");
+        fprintf(irFile, "#include <stdlib.h>\n");
+        fprintf(irFile, "#include <string.h>\n");
+        fprintf(irFile, "#include <errno.h>\n");
 
-        // Generate a main function that calls this function if main is not explicitly defined
-        if (strcmp((yyvsp[(2) - (7)].str), "main") != 0) {
-            fprintf(irFile, "int main() {\n%s();\nreturn 0;\n}\n", (yyvsp[(2) - (7)].str));
+        // Print the statements to the file
+        fprintf(irFile, "%s\n", (yyvsp[(1) - (1)].str));
+
+        // Add function calls if present
+        if (function_calls) {
+            fprintf(irFile, "    %s\n", function_calls);
+        }
+
+        // Free allocated memory
+        free((yyvsp[(1) - (1)].str));
+        if (function_calls) {
+            free(function_calls);
         }
     ;}
     break;
 
-  case 5:
-#line 116 "sultanc.y"
+  case 3:
+#line 134 "sultanc.y"
     {
-        if (main_defined) {
-            yyerror("main function already defined.");
+        (yyval.str) = malloc(strlen((yyvsp[(1) - (2)].str)) + strlen((yyvsp[(2) - (2)].str)) + 1);
+        strcpy((yyval.str), (yyvsp[(1) - (2)].str));
+        strcat((yyval.str), (yyvsp[(2) - (2)].str));
+        free((yyvsp[(1) - (2)].str));
+        free((yyvsp[(2) - (2)].str));
+    ;}
+    break;
+
+  case 4:
+#line 142 "sultanc.y"
+    {
+        (yyval.str) = strdup((yyvsp[(1) - (1)].str));
+        free((yyvsp[(1) - (1)].str));
+    ;}
+    break;
+
+  case 12:
+#line 159 "sultanc.y"
+    {
+        (yyval.str) = strdup((yyvsp[(1) - (1)].str));
+    ;}
+    break;
+
+  case 13:
+#line 167 "sultanc.y"
+    {
+        // Initialize or expand the function_calls buffer to store function call strings
+        if (function_calls == NULL) {
+            function_calls = malloc(strlen((yyvsp[(1) - (4)].str)) + 10);
+            sprintf(function_calls, "    %s();\n", (yyvsp[(1) - (4)].str));
         } else {
-            main_defined = 1;
-            // Ensure necessary C libraries are included in the generated IR
-            fprintf(irFile, "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n");
-
-            // Generate the main function in C
-            fprintf(irFile, "int main() {\n%s\nreturn 0;\n}\n", (yyvsp[(6) - (7)].str));
+            function_calls = realloc(function_calls, strlen(function_calls) + strlen((yyvsp[(1) - (4)].str)) + 10);
+            strcat(function_calls, "    ");
+            strcat(function_calls, (yyvsp[(1) - (4)].str));
+            strcat(function_calls, "();\n");
         }
-    ;}
-    break;
 
-  case 6:
-#line 132 "sultanc.y"
-    {
-        (yyval.str) = (yyvsp[(1) - (1)].str);
-    ;}
-    break;
-
-  case 7:
-#line 140 "sultanc.y"
-    {
-        asprintf(&(yyval.str), "%s\n%s", (yyvsp[(1) - (2)].str), (yyvsp[(2) - (2)].str));
-    ;}
-    break;
-
-  case 8:
-#line 143 "sultanc.y"
-    {
-        (yyval.str) = (yyvsp[(1) - (1)].str);
-    ;}
-    break;
-
-  case 9:
-#line 150 "sultanc.y"
-    {
-        fprintf(irFile, "int %s = %s;\n", (yyvsp[(2) - (5)].str), (yyvsp[(4) - (5)].str));
-        (yyval.str) = strdup("");  // Empty string as no return value needed
-    ;}
-    break;
-
-  case 10:
-#line 154 "sultanc.y"
-    {
-        fprintf(irFile, "printf(\"%%d\\n\", %s);\n", (yyvsp[(3) - (5)].str));
-        (yyval.str) = strdup("");  // Empty string as no return value needed
+        (yyval.str) = strdup("");  // Return an empty string since calls are handled separately
     ;}
     break;
 
   case 14:
-#line 165 "sultanc.y"
+#line 182 "sultanc.y"
+    {
+        // Handle function calls with a single argument
+        if (function_calls == NULL) {
+            function_calls = malloc(strlen((yyvsp[(1) - (5)].str)) + strlen((yyvsp[(3) - (5)].str)) + 10);
+            sprintf(function_calls, "    %s(%s);\n", (yyvsp[(1) - (5)].str), (yyvsp[(3) - (5)].str));
+        } else {
+            function_calls = realloc(function_calls, strlen(function_calls) + strlen((yyvsp[(1) - (5)].str)) + strlen((yyvsp[(3) - (5)].str)) + 10);
+            strcat(function_calls, "    ");
+            strcat(function_calls, (yyvsp[(1) - (5)].str));
+            strcat(function_calls, "(");
+            strcat(function_calls, (yyvsp[(3) - (5)].str));
+            strcat(function_calls, ");\n");
+        }
+
+        free((yyvsp[(3) - (5)].str));  // Free the expression string
+        (yyval.str) = strdup("");  // Return an empty string
+    ;}
+    break;
+
+  case 15:
+#line 202 "sultanc.y"
+    {
+        if (main_defined) {
+            yyerror("Error: Multiple definitions of the 'main' function.");
+            YYABORT;  // Abort on multiple definitions
+        }
+
+        main_defined = 1;  // Mark that the main function is defined.
+
+        size_t main_body_size = strlen((yyvsp[(6) - (7)].str)) + (function_calls ? strlen(function_calls) : 0) + 64;
+        (yyval.str) = malloc(main_body_size);
+
+        if (function_calls) {
+            sprintf((yyval.str), "int main() {\n%s\n%s\nreturn 0;\n}\n", (yyvsp[(6) - (7)].str), function_calls);
+        } else {
+            sprintf((yyval.str), "int main() {\n%s\nreturn 0;\n}\n", (yyvsp[(6) - (7)].str));
+        }
+
+        free((yyvsp[(6) - (7)].str));
+        if (function_calls) {
+            free(function_calls);
+            function_calls = NULL;
+        }
+    ;}
+    break;
+
+  case 16:
+#line 230 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(2) - (7)].str)) + strlen((yyvsp[(6) - (7)].str)) + 64);
+        sprintf((yyval.str), "void %s() {\n%s\n}\n", (yyvsp[(2) - (7)].str), (yyvsp[(6) - (7)].str));
+        free((yyvsp[(6) - (7)].str));
+    ;}
+    break;
+
+  case 17:
+#line 238 "sultanc.y"
+    {
+        if (is_declared((yyvsp[(2) - (3)].str))) {
+            yyerror("Error: Variable already declared.");
+            (yyval.str) = strdup("");
+        } else {
+            declare_var((yyvsp[(2) - (3)].str), "int");
+            (yyval.str) = malloc(strlen((yyvsp[(2) - (3)].str)) + 16);
+            sprintf((yyval.str), "int %s = 0;\n", (yyvsp[(2) - (3)].str));
+        }
+    ;}
+    break;
+
+  case 18:
+#line 249 "sultanc.y"
+    {
+        if (is_declared((yyvsp[(2) - (5)].str))) {
+            yyerror("Error: Variable already declared.");
+            (yyval.str) = strdup("");
+        } else {
+            const char *type = ((yyvsp[(4) - (5)].str)[0] == '"' && (yyvsp[(4) - (5)].str)[strlen((yyvsp[(4) - (5)].str)) - 1] == '"') ? "char*" : "int";
+            declare_var((yyvsp[(2) - (5)].str), type);
+
+            // Ensure the string literal is generated correctly with only one set of quotes
+            char *value = strdup((yyvsp[(4) - (5)].str));
+            if (strcmp(type, "char*") == 0) {
+                // Remove outer quotes if they exist to avoid duplicate quotes in the output
+                if (value[0] == '"' && value[strlen(value) - 1] == '"') {
+                    value[strlen(value) - 1] = '\0';  // Remove trailing quote
+                    value++;  // Shift pointer to skip leading quote
+                }
+                (yyval.str) = malloc(strlen(type) + strlen((yyvsp[(2) - (5)].str)) + strlen(value) + 16);
+                sprintf((yyval.str), "%s %s = \"%s\";\n", type, (yyvsp[(2) - (5)].str), value);
+            } else {
+                (yyval.str) = malloc(strlen(type) + strlen((yyvsp[(2) - (5)].str)) + strlen((yyvsp[(4) - (5)].str)) + 16);
+                sprintf((yyval.str), "%s %s = %s;\n", type, (yyvsp[(2) - (5)].str), (yyvsp[(4) - (5)].str));
+            }
+        }
+        free((yyvsp[(4) - (5)].str));
+    ;}
+    break;
+
+  case 19:
+#line 278 "sultanc.y"
+    {
+        const char* var_type = get_var_type((yyvsp[(1) - (4)].str));
+        if (!var_type) {
+            yyerror("Undeclared variable used in assignment");
+            (yyval.str) = strdup("");  // Return an empty string to avoid further processing
+        } else {
+            (yyval.str) = malloc(strlen((yyvsp[(1) - (4)].str)) + strlen((yyvsp[(3) - (4)].str)) + 8);
+            if (strcmp(var_type, "char*") == 0) {
+                sprintf((yyval.str), "%s = %s;\n", (yyvsp[(1) - (4)].str), (yyvsp[(3) - (4)].str));  // Use "%s" for string literals
+            } else {
+                sprintf((yyval.str), "%s = %s;\n", (yyvsp[(1) - (4)].str), (yyvsp[(3) - (4)].str));  // Use "%s" for numbers
+            }
+        }
+        free((yyvsp[(3) - (4)].str));
+    ;}
+    break;
+
+  case 20:
+#line 299 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(3) - (7)].str)) + strlen((yyvsp[(6) - (7)].str)) + 32);
+        sprintf((yyval.str), "if (%s) {\n%s\n}\n", (yyvsp[(3) - (7)].str), (yyvsp[(6) - (7)].str));
+
+        free((yyvsp[(3) - (7)].str));
+        free((yyvsp[(6) - (7)].str));
+    ;}
+    break;
+
+  case 21:
+#line 311 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(3) - (4)].str)) + 16);
+        sprintf((yyval.str), "else {\n%s\n}\n", (yyvsp[(3) - (4)].str));
+
+        free((yyvsp[(3) - (4)].str));
+    ;}
+    break;
+
+  case 22:
+#line 321 "sultanc.y"
     {
         (yyval.str) = malloc(64 + strlen((yyvsp[(3) - (5)].str)) + 20);  // Adjust memory allocation
         sprintf((yyval.str), "printf(%s\"\\n\");\n", (yyvsp[(3) - (5)].str));  // Add \\n inside the string
     ;}
     break;
 
-  case 15:
-#line 170 "sultanc.y"
+  case 23:
+#line 326 "sultanc.y"
     {
-        // Handle f-string logic here
-        char *formatted_str = strdup((yyvsp[(3) - (5)].str) + 2);  // Skip the 'f"' part
+        // Handle f-string or ت-string logic (same behavior for both)
+        char *formatted_str = strdup((yyvsp[(3) - (5)].str) + 2);  // Skip the 'f"' or 'ت"' part
         formatted_str[strlen(formatted_str) - 1] = '\0';  // Remove ending '"'
 
-        // Replace placeholders (e.g., "{name}") with proper format specifiers
-        char *output_str = malloc(strlen(formatted_str) + 64);
+        // Allocate memory for the output string
+        char *output_str = malloc(strlen(formatted_str) + 128);  // Extra space for formatting
         char *placeholder_start = strstr(formatted_str, "{");
 
         if (placeholder_start) {
@@ -1561,12 +1744,11 @@ yyreduce:
                 yyerror("Undeclared variable used in f-string");
                 (yyval.str) = strdup("");  // Return empty string on error
             } else {
-                // Add formatting based on variable type
-                if (strcmp(var_type, "char*") == 0) {
-                    sprintf(output_str, "printf(\"%s%%s\\n\", %s);\n", formatted_str, variable_name);
-                } else {
-                    sprintf(output_str, "printf(\"%s%%d\\n\", %s);\n", formatted_str, variable_name);
-                }
+                // Determine correct format specifier
+                char *format_specifier = (strcmp(var_type, "char*") == 0) ? "%s" : "%d";
+
+                // Generate the final printf statement
+                sprintf(output_str, "printf(\"%s%s\\n\", %s);\n", formatted_str, format_specifier, variable_name);
                 (yyval.str) = output_str;
             }
         } else {
@@ -1575,85 +1757,140 @@ yyreduce:
             sprintf((yyval.str), "printf(\"%s\\n\");\n", formatted_str);
         }
 
-        free(formatted_str);
-    ;}
-    break;
-
-  case 16:
-#line 211 "sultanc.y"
-    {
-        fprintf(irFile, "if (%s) {\n%s\n}\n", (yyvsp[(3) - (7)].str), (yyvsp[(6) - (7)].str));
-        (yyval.str) = strdup("");  // Empty string as no return value needed
-    ;}
-    break;
-
-  case 17:
-#line 219 "sultanc.y"
-    {
-        fprintf(irFile, "else {\n%s\n}\n", (yyvsp[(3) - (4)].str));
-        (yyval.str) = strdup("");  // Empty string as no return value needed
-    ;}
-    break;
-
-  case 18:
-#line 225 "sultanc.y"
-    {
-        asprintf(&(yyval.str), "%d", (yyvsp[(1) - (1)].num));  // Convert the number to a string
-    ;}
-    break;
-
-  case 19:
-#line 228 "sultanc.y"
-    {
-        (yyval.str) = strdup((yyvsp[(1) - (1)].str));  // Return the identifier as a string
-    ;}
-    break;
-
-  case 20:
-#line 231 "sultanc.y"
-    {
-        asprintf(&(yyval.str), "%s + %s", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
-    ;}
-    break;
-
-  case 21:
-#line 234 "sultanc.y"
-    {
-        asprintf(&(yyval.str), "%s - %s", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
-    ;}
-    break;
-
-  case 22:
-#line 237 "sultanc.y"
-    {
-        asprintf(&(yyval.str), "%s * %s", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
-    ;}
-    break;
-
-  case 23:
-#line 240 "sultanc.y"
-    {
-        asprintf(&(yyval.str), "%s / %s", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        free(formatted_str);  // Free allocated memory
     ;}
     break;
 
   case 24:
-#line 243 "sultanc.y"
+#line 366 "sultanc.y"
     {
-        asprintf(&(yyval.str), "%s < %s", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        if (!is_declared((yyvsp[(1) - (1)].str))) {
+            yyerror("Undeclared variable used in expression");
+            (yyval.str) = strdup("");
+        } else {
+            (yyval.str) = strdup((yyvsp[(1) - (1)].str));
+        }
     ;}
     break;
 
   case 25:
-#line 246 "sultanc.y"
+#line 375 "sultanc.y"
     {
-        asprintf(&(yyval.str), "%s > %s", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        (yyval.str) = malloc(32);
+        sprintf((yyval.str), "%d", (yyvsp[(1) - (1)].num));
+    ;}
+    break;
+
+  case 26:
+#line 380 "sultanc.y"
+    {
+        (yyval.str) = strdup((yyvsp[(1) - (1)].str));
+    ;}
+    break;
+
+  case 27:
+#line 384 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(1) - (3)].str)) + strlen((yyvsp[(3) - (3)].str)) + 5);
+        sprintf((yyval.str), "(%s + %s)", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        free((yyvsp[(1) - (3)].str));
+        free((yyvsp[(3) - (3)].str));
+    ;}
+    break;
+
+  case 28:
+#line 391 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(1) - (3)].str)) + strlen((yyvsp[(3) - (3)].str)) + 5);
+        sprintf((yyval.str), "(%s - %s)", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        free((yyvsp[(1) - (3)].str));
+        free((yyvsp[(3) - (3)].str));
+    ;}
+    break;
+
+  case 29:
+#line 398 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(1) - (3)].str)) + strlen((yyvsp[(3) - (3)].str)) + 5);
+        sprintf((yyval.str), "(%s * %s)", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        free((yyvsp[(1) - (3)].str));
+        free((yyvsp[(3) - (3)].str));
+    ;}
+    break;
+
+  case 30:
+#line 405 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(1) - (3)].str)) + strlen((yyvsp[(3) - (3)].str)) + 5);
+        sprintf((yyval.str), "(%s / %s)", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        free((yyvsp[(1) - (3)].str));
+        free((yyvsp[(3) - (3)].str));
+    ;}
+    break;
+
+  case 31:
+#line 412 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(1) - (3)].str)) + strlen((yyvsp[(3) - (3)].str)) + 6);
+        sprintf((yyval.str), "%s == %s", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        free((yyvsp[(1) - (3)].str));
+        free((yyvsp[(3) - (3)].str));
+    ;}
+    break;
+
+  case 32:
+#line 419 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(1) - (3)].str)) + strlen((yyvsp[(3) - (3)].str)) + 6);
+        sprintf((yyval.str), "%s != %s", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        free((yyvsp[(1) - (3)].str));
+        free((yyvsp[(3) - (3)].str));
+    ;}
+    break;
+
+  case 33:
+#line 426 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(1) - (3)].str)) + strlen((yyvsp[(3) - (3)].str)) + 5);
+        sprintf((yyval.str), "%s < %s", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        free((yyvsp[(1) - (3)].str));
+        free((yyvsp[(3) - (3)].str));
+    ;}
+    break;
+
+  case 34:
+#line 433 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(1) - (3)].str)) + strlen((yyvsp[(3) - (3)].str)) + 5);
+        sprintf((yyval.str), "%s > %s", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        free((yyvsp[(1) - (3)].str));
+        free((yyvsp[(3) - (3)].str));
+    ;}
+    break;
+
+  case 35:
+#line 440 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(1) - (3)].str)) + strlen((yyvsp[(3) - (3)].str)) + 6);
+        sprintf((yyval.str), "%s <= %s", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        free((yyvsp[(1) - (3)].str));
+        free((yyvsp[(3) - (3)].str));
+    ;}
+    break;
+
+  case 36:
+#line 447 "sultanc.y"
+    {
+        (yyval.str) = malloc(strlen((yyvsp[(1) - (3)].str)) + strlen((yyvsp[(3) - (3)].str)) + 6);
+        sprintf((yyval.str), "%s >= %s", (yyvsp[(1) - (3)].str), (yyvsp[(3) - (3)].str));
+        free((yyvsp[(1) - (3)].str));
+        free((yyvsp[(3) - (3)].str));
     ;}
     break;
 
 
 /* Line 1267 of yacc.c.  */
-#line 1657 "sultanc.tab.c"
+#line 1894 "sultanc.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1867,11 +2104,10 @@ yyreturn:
 }
 
 
-#line 252 "sultanc.y"
+#line 455 "sultanc.y"
 
 
-// Error handling function
 void yyerror(const char *s) {
-    handle_parse_error(s);  // Call the custom error handler
+    handle_parse_error(s);  // Call the error handling function in error_handling.c
 }
 
