@@ -149,6 +149,14 @@ target/ir
 target/<filename>
 ```
 
+
+
+المشروع
+كنا اول من اسس علم الرياضيات ونسيان متابعه. حلم ان توجد لغه عربيه كامله للبرمجه وباذن من الله بطورها ولتكون اول محرر لغه عربيه بالعالم بنفس مستوي لغه  c. ايضا اللغه تدعم العربي والانجليزي وبيحيث ايضا باذن من الله تكون اول محرر/compiler تدعم اكثر من للغه. حاليا اللغه شغاله في نطاق تجريبي. جرب وختبر وبكون متشكر انك تشارك رايك مهما كان. واتمنا من المجتمع العربي بشكل عالم المساهمه للي عندهم خبره لعمل محرر بحث يتيح كتابه عربي. حاليا انا استخدم html عشان كتابه النص لكن المحرر نفسه بي c. فالمحتاج مساعده لعمل كود ادتر code editor خاص بالعربي. هذا بيتيح لي الوقت اركز علي المحرر العربي اكثر. ال code editro  حاليا هو في مجلد -> supax/lde
+
+
+
+
 My goals
 
 Objective: To develop a new low-level language, Sultan-lang, with an initial compiler written in English. The long-term vision is to rewrite the compiler in Arabic once the language is fully self-hosting, while maintaining Sultan-lang's core mission: to compile scripts written in multiple languages. At launch, Sultan-lang will support Arabic (ar), Spanish (es), French (fr), and English (en), with English being the language of the initial compilation scripts.
