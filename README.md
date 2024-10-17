@@ -143,7 +143,7 @@ target/<filename>
 
 Both English and Arabic will generate a c file as IR file and also exc file in the 
 ```bash
-# thise folder will be generated as steo if compilations 
+# thise folder will be generated as step if compilations 
 target/ir
 #The exc file will be in
 target/<filename>
