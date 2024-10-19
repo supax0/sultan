@@ -1,0 +1,4 @@
+def main() {
+    let x = gamma(5);
+    print(f"{x}");
+}

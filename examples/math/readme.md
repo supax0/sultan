@@ -1,0 +1,2 @@
+# Examples
+this folder meant to give the users same examples on how it is in the current stage. there are others functions but I have not had the time to add example of them yet. place test and i will appreciate your feedback.

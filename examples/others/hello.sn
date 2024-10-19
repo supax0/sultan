@@ -1,0 +1,10 @@
+// This the english example 
+def testerEnglish(){
+    print("Hello Sultan!");
+}
+// this the arabic example 
+عرف القلعة(){
+    testerEnglish();
+    اطبع("هلا");
+    
+}
