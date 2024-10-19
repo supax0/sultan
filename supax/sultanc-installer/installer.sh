@@ -17,7 +17,7 @@ else
 fi
 
 # Set the source files and output file
-SOURCE_FILES="interface/main.c builder/driver.c parser/sultanc.tab.c lexer/lex.yy.c \
+SOURCE_FILES="interface/main.c builder/driver.c parser/sultanc.c lexer/lex.c \
 cli/command.c  utils/helpers.c utils/error_handling.c utils/parser_helpers.c"
 
 OUTPUT_FILE="bin/sultanc"  # The output is placed in the 'bin' folder, relative to 'compiler'

@@ -64,24 +64,81 @@
      ARROW = 280,
      THEN = 281,
      MAIN = 282,
-     DOT = 283,
-     SEMICOLON = 284,
-     EQUALS = 285,
-     LPAREN = 286,
-     RPAREN = 287,
-     CLPAREN = 288,
-     CRPAREN = 289,
-     COMMA = 290,
-     PLUS = 291,
-     MINUS = 292,
-     MULT = 293,
-     DIV = 294,
-     LT = 295,
-     GT = 296,
-     LE = 297,
-     GE = 298,
-     EQ = 299,
-     NE = 300
+     IO = 283,
+     WEB = 284,
+     EMDEDDED = 285,
+     OPENFILE = 286,
+     READ = 287,
+     WRITE = 288,
+     CLOSE = 289,
+     USE = 290,
+     BUFFER = 291,
+     FLOAT_NUMBER = 292,
+     SQRT = 293,
+     CBRT = 294,
+     POW = 295,
+     EXP = 296,
+     EXP2 = 297,
+     EXPM1 = 298,
+     LOG = 299,
+     LOG10 = 300,
+     LOG2 = 301,
+     LOG1P = 302,
+     SIN = 303,
+     COS = 304,
+     TAN = 305,
+     ASIN = 306,
+     ACOS = 307,
+     ATAN = 308,
+     ATAN2 = 309,
+     SINH = 310,
+     COSH = 311,
+     TANH = 312,
+     ASINH = 313,
+     ACOSH = 314,
+     ATANH = 315,
+     CEIL = 316,
+     FLOOR = 317,
+     ROUND = 318,
+     TRUNC = 319,
+     FMOD = 320,
+     REMAINDER = 321,
+     FABS = 322,
+     ABS = 323,
+     COPYSIGN = 324,
+     FMIN = 325,
+     FMAX = 326,
+     FDIM = 327,
+     DEGREES = 328,
+     RADIANS = 329,
+     HYPOT = 330,
+     GAMMA = 331,
+     LGAMMA = 332,
+     ERF = 333,
+     ERFC = 334,
+     ISNAN = 335,
+     ISINF = 336,
+     FPCLASSIFY = 337,
+     DOT = 338,
+     SEMICOLON = 339,
+     EQUALS = 340,
+     LPAREN = 341,
+     RPAREN = 342,
+     CLPAREN = 343,
+     CRPAREN = 344,
+     COMMA = 345,
+     PLUS = 346,
+     MINUS = 347,
+     MULT = 348,
+     DIV = 349,
+     LT = 350,
+     GT = 351,
+     LE = 352,
+     GE = 353,
+     EQ = 354,
+     NE = 355,
+     LBRACKET = 356,
+     RBRACKET = 357
    };
 #endif
 /* Tokens.  */
@@ -110,37 +167,94 @@
 #define ARROW 280
 #define THEN 281
 #define MAIN 282
-#define DOT 283
-#define SEMICOLON 284
-#define EQUALS 285
-#define LPAREN 286
-#define RPAREN 287
-#define CLPAREN 288
-#define CRPAREN 289
-#define COMMA 290
-#define PLUS 291
-#define MINUS 292
-#define MULT 293
-#define DIV 294
-#define LT 295
-#define GT 296
-#define LE 297
-#define GE 298
-#define EQ 299
-#define NE 300
+#define IO 283
+#define WEB 284
+#define EMDEDDED 285
+#define OPENFILE 286
+#define READ 287
+#define WRITE 288
+#define CLOSE 289
+#define USE 290
+#define BUFFER 291
+#define FLOAT_NUMBER 292
+#define SQRT 293
+#define CBRT 294
+#define POW 295
+#define EXP 296
+#define EXP2 297
+#define EXPM1 298
+#define LOG 299
+#define LOG10 300
+#define LOG2 301
+#define LOG1P 302
+#define SIN 303
+#define COS 304
+#define TAN 305
+#define ASIN 306
+#define ACOS 307
+#define ATAN 308
+#define ATAN2 309
+#define SINH 310
+#define COSH 311
+#define TANH 312
+#define ASINH 313
+#define ACOSH 314
+#define ATANH 315
+#define CEIL 316
+#define FLOOR 317
+#define ROUND 318
+#define TRUNC 319
+#define FMOD 320
+#define REMAINDER 321
+#define FABS 322
+#define ABS 323
+#define COPYSIGN 324
+#define FMIN 325
+#define FMAX 326
+#define FDIM 327
+#define DEGREES 328
+#define RADIANS 329
+#define HYPOT 330
+#define GAMMA 331
+#define LGAMMA 332
+#define ERF 333
+#define ERFC 334
+#define ISNAN 335
+#define ISINF 336
+#define FPCLASSIFY 337
+#define DOT 338
+#define SEMICOLON 339
+#define EQUALS 340
+#define LPAREN 341
+#define RPAREN 342
+#define CLPAREN 343
+#define CRPAREN 344
+#define COMMA 345
+#define PLUS 346
+#define MINUS 347
+#define MULT 348
+#define DIV 349
+#define LT 350
+#define GT 351
+#define LE 352
+#define GE 353
+#define EQ 354
+#define NE 355
+#define LBRACKET 356
+#define RBRACKET 357
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 26 "sultanc.y"
+#line 181 "sultanc.y"
 {
     char *str;  // For identifiers and model names
     int num;    // For numbers
 }
 /* Line 1529 of yacc.c.  */
-#line 144 "sultanc.tab.h"
+#line 258 "sultanc.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1

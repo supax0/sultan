@@ -5,7 +5,7 @@
 #include <math.h>  // For fmin
 #include "../builder/outputmsg.h"
 #include "../parser/sultanc.tab.h"  // Bison-generated header
-
+// extern int current_language;  // 0 = English, 1 = Arabic
 void provide_token_hint(const char *token, const char *error_msg);
 int levenshtein(const char *s1, const char *s2);
 int is_arabic(const char *text);
@@ -83,6 +83,8 @@ int is_arabic(const char *text) {
     }
     return 0;
 }
+
+
 void provide_token_hint(const char *token, const char *error_msg) {
     if (strstr(error_msg, "unexpected CLPAREN") && strstr(error_msg, "expecting RPAREN")) {
         fprintf(stderr, YELLOW "Hint: You might be missing a closing parenthesis ')'.\n" RESET);
