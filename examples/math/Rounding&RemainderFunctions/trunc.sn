@@ -1,0 +1,4 @@
+def main() {
+    let x = trunc(2.8);
+    print(f"{x}");
+}

@@ -1,0 +1,6 @@
+def main() {
+    use.buffer[255];
+    file.read("test.txt");
+
+    use.log(user_buffer);
+}

@@ -1,0 +1,4 @@
+def main() {
+    let x = lgamma(5);
+    print(f"{x}");
+}

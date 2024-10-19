@@ -1,0 +1,4 @@
+def main() {
+    let x = round(2.5);
+    print(f"{x}");
+}

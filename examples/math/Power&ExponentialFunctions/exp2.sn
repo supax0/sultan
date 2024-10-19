@@ -1,0 +1,4 @@
+def main() {
+    let x = exp2(10);
+    print(f"{x}");
+}

@@ -1,0 +1,6 @@
+
+
+def main() {
+    let x = sqrt(25);
+    print(f"{x}");
+}

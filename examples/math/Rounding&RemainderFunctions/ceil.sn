@@ -1,0 +1,4 @@
+def main() {
+    let x = ceil(2.3);
+    print(f"{x}");
+}
