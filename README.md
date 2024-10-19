@@ -167,9 +167,9 @@ English, while widely used in programming, has a relatively limited number of un
 
 Arabic: A Superior Semitic Language for Programming:
 
-Arabic is a highly structured and semantically rich language, making it exceptionally well-suited for programming. Its root-based system allows for a vast array of word formations and syntactic flexibility, enabling more expressive and precise code. By leveraging Arabic's superior semantic structure, Arun-lang will be able to offer more powerful and versatile programming constructs, further distinguishing itself from other languages.
+Arabic is a highly structured and semantically rich language, making it exceptionally well-suited for programming. Its root-based system allows for a vast array of word formations and syntactic flexibility, enabling more expressive and precise code. By leveraging Arabic's superior semantic structure, sultan-lang will be able to offer more powerful and versatile programming constructs, further distinguishing itself from other languages.
 
-Arun-lang's unique ability to allow code to be written in any supported language (Arabic, Spanish, French, or English) while maintaining the integrity and functionality of the code demonstrates the compiler's versatility. This multi-language support is not just a feature but a fundamental aspect of Arun-lang's design, reflecting the global and inclusive vision of the language.
+sultan-lang's unique ability to allow code to be written in any supported language (Arabic, Spanish, French, or English) while maintaining the integrity and functionality of the code demonstrates the compiler's versatility. This multi-language support is not just a feature but a fundamental aspect of sultan-lang's design, reflecting the global and inclusive vision of the language.
 
 Future Impact:
 
